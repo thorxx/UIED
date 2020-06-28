@@ -84,6 +84,9 @@ def block_division(grey, org,
                 if block.height < 40 and block.width < 40:
                     continue
 
+                if block.area / (row * column) > 0.8:
+                    continue
+
                 # get the boundary of this region
                 # ignore lines
                 if block.compo_is_line(line_thickness):

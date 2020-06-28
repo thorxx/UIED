@@ -4,12 +4,11 @@ import ip_region_proposal as ip
 resize_by_height = 800
 
 # set input image path
-# PATH_IMG_INPUT = 'E:\\Mulong\\Datasets\\rico\\combined\\23.jpg'
-input_path_img = 'data\\input\\a.png'
+input_path_img = 'data\\input\\66529.jpg'
 output_root = 'data\\output'
 
-is_ip = True
-is_clf = True
+is_ip = False
+is_clf = False
 is_ocr = False
 is_merge = True
 
@@ -28,7 +27,7 @@ if is_ip:
         classifier['Elements'] = CNN('Elements')
         classifier['Noise'] = CNN('Noise')
 
-    ip.compo_detection(input_path_img, output_root, resize_by_height=resize_by_height, show=False,
+    ip.compo_detection(input_path_img, output_root, resize_by_height=resize_by_height, show=True,
                        classifier=classifier)
 
 if is_merge:

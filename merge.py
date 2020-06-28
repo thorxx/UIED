@@ -41,7 +41,7 @@ def draw_bounding_box_non_text(org, corners_compo, compos_class, org_shape=None,
             board = cv2.rectangle(board, (corner[0], corner[1]), (corner[2], corner[3]), color, line)
     if show:
         board_org_size = cv2.resize(board, (org_shape[1], org_shape[0]))
-        board_org_size = board_org_size[100:-110]
+        # board_org_size = board_org_size[100:-110]
         cv2.imshow(name, cv2.resize(board_org_size, (board.shape[1], board.shape[0])))
         cv2.waitKey(0)
     return board
@@ -222,6 +222,7 @@ def incorporate(img_path, compo_path, text_path, output_root, resize_by_height=N
     board = draw_bounding_box_class(org_resize, corners_compo_new, compos_class_new)
     draw_bounding_box_non_text(org_resize, corners_compo_new, compos_class_new, org_shape=org.shape, show=True)
 
+    os.makedirs(pjoin(output_root, 'merge'), exist_ok=True)
     save_corners_json(pjoin(output_root, 'merge', name + '.json'), corners_compo_new, compos_class_new)
     if write_img:
         cv2.imwrite(pjoin(output_root, 'merge', name + '.png'), board)
